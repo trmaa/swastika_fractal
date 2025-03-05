@@ -1,0 +1,46 @@
+<style>
+body {
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+canvas {
+	image-rendering: pixelated;
+	width: 100vw;
+	height: 100vh;
+}
+</style>
+
+<canvas id="canvas" width="32" height="18"></canvas>
+<script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let pattern = [
+	0,1,0,1,1,1,0,1,0,0,
+	1,1,1,0,1,0,0,0,1,0,
+	0,1,0,0,0,1,0,1,1,1,
+	0,0,1,0,1,1,1,0,1,0,
+	0,1,1,1,0,1,0,0,0,1,
+	1,0,1,0,0,0,1,0,1,1,
+	0,0,0,1,0,1,1,1,0,1,
+	1,0,1,1,1,0,1,0,0,0,
+	1,1,0,1,0,0,0,1,0,1,
+	1,0,0,0,1,0,1,1,1,0
+];
+let pattern_w = 10;
+let pattern_h = 10;
+
+let grid_w = canvas.width;
+let grid_h = canvas.height;
+for (let y = 0; y < grid_h; y++) {
+	for (let x = 0; x < grid_w; x++) {
+		let value = pattern[x%pattern_w + (y%pattern_h)*pattern_w];
+
+		ctx.fillStyle = value ? "black" : "white";
+		ctx.fillRect(x, y, 1, 1);
+	}
+}
+
+</script>
